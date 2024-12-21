@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hiltAndroid)
     id("com.google.devtools.ksp")
+
 }
 
 android {
@@ -62,5 +63,5 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.androidx.hilt.navigation.compose)
-
+    implementation(libs.androidx.navigation.compose)
 }
