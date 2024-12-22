@@ -1,34 +1,39 @@
 package com.newsperform.warriorgame
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
-import com.newsperform.warriorgame.presentation.WarriorGameApp
-import com.newsperform.warriorgame.presentation.screens.HomeScreen
-import com.newsperform.warriorgame.ui.theme.WarriorGameTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.newsperform.warriorgame.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Surface(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                val navController = rememberNavController()
-                WarriorGameApp(navController = navController)
-            }
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(binding.navHostFragment.id) as NavHostFragment
+        navController = navHostFragment.navController
+        setupActionBarWithNavController(navController)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+//        enableEdgeToEdge()
+//        setContent {
+//            Surface(
+//                modifier = Modifier.fillMaxSize()
+//            ) {
+//                val navController = rememberNavController()
+//                WarriorGameApp(navController = navController)
+//            }
+//        }
+//    }
 }

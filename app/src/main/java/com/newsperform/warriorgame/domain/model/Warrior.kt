@@ -56,6 +56,7 @@ sealed class Warrior(
         override val id: String = UUID.randomUUID().toString(),
         override val name: String,
         val intelligence: Int,
+        val mp: Int,
         override val hp: Int
     ) : Warrior(
         id = id,

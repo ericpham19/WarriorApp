@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WarriorGame</string>
+    <string name="button_description">Add/Edit Button</string>
 </resources>
